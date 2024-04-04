@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Component } from "react";
+import { ThirdwebProvider } from "@/app/thirdweb";
 
 const inter = Inter({ subsets: ["latin"] });
 const supportedChainIds = [4]
@@ -21,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThirdwebProvider>{children}</ThirdwebProvider>
+      </body>
     </html>
   );
 }
