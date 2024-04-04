@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Component } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+const supportedChainIds = [4]
+const connectors = {
+  injected: {},
+}
 
 export const metadata: Metadata = {
   title: "Create Next App",
