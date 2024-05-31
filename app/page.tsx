@@ -1,4 +1,5 @@
-import Login from '../components/login'
+import Header from "@/components/Header"
+import Hero from "@/components/Hero"
 
 const style = {
   wrapper: `relative`,
@@ -19,6 +20,9 @@ const style = {
 
 export default function Home() {
   return (
-    <Login />
+    <>
+      <Header />
+      <Hero />
+    </>
   )
 }

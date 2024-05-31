@@ -3,7 +3,10 @@ import Link from 'next/link'
 import openseaLogo from '../assets/opensea-logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
+import { ConnectButton, ConnectEmbed } from '@/app/thirdweb'
+import { chain, client } from "@/utils/constants"
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
+import React from 'react'
 
 const style = {
   wrapper: `bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex `,
@@ -17,7 +20,13 @@ const style = {
   headerIcon: `text-[#8a939b] text-3xl font-black px-4 hover:text-white cursor-pointer`,
 }
 
+const profileImage = <CgProfile />
+
+// const myStyle: React.CSSProperties = { backgroundColor: "grey", color: "white", fontSize: '16px', backgroundImage: profileImage };
+
+
 export default function Header() {
+
   return (
     <div className={style.wrapper}>
       <Link href='/'>
@@ -40,7 +49,10 @@ export default function Header() {
         <div className={style.headerItem}>Resources</div>
         <div className={style.headerItem}>Create</div>
         <div className={style.headerIcon}>
-          <CgProfile />
+          <ConnectButton
+            client={client}
+            chain={chain}
+          />
         </div>
         <div className={style.headerIcon}>
           <MdOutlineAccountBalanceWallet />
