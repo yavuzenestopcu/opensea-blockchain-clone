@@ -6,7 +6,7 @@ import Hero from "@/components/Hero"
 import Header from "@/components/Header"
 
 
-const Login: React.FC = () => {
+export default function Login() {
     const account = useActiveAccount()
     return (
         <div>
@@ -31,5 +31,3 @@ const Login: React.FC = () => {
         </div>
     )
 }
-
-export default Login
