@@ -5,10 +5,13 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'opensea-blockchain-clone',
+  title: 'blockchain-clone',
 
-  projectId: 'urfyb8cc',
+  projectId: 'b9qtr1ua',
   dataset: 'production',
+
+  token:
+      'skkRgNoZ5SqLJK9MRs6DYbD9M94Xf8nZKVsgkotuk06GXZWM1QFQImTAU57jTiUtqYvGz4Et3spEynqY44xZ0c6aZkmXtPbGHGVH5nx20LuwYflRswybcDkID6xZLa7GNCyDQLPz94RWVGUVrcjqP86cITbBCu5n7RkfUqS5dCyPMzyQNqqK',
 
   plugins: [structureTool(), visionTool()],
 
