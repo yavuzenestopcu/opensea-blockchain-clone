@@ -4,10 +4,10 @@ import "./globals.css";
 import { ThirdwebProvider } from "@/app/thirdweb";
 
 const inter = Inter({ subsets: ["latin"] });
-const supportedChainIds = [4]
-const connectors = {
-  injected: {},
-}
+// const supportedChainIds = [11155111]
+// const connectors = {
+//   injected: {},
+// }
 
 export const metadata: Metadata = {
   title: "Create Next App",

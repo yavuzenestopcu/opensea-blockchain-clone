@@ -26,3 +26,56 @@ export default function Home() {
     </div>
   )
 }
+
+// 'use client';
+
+
+// // app/page.js
+// import { useState } from 'react';
+// import { ConnectButton} from '@/app/thirdweb'
+// import AuthForm from '../components/AuthForm';
+// import { chain, client } from "@/utils/constants"
+// import { CgProfile } from 'react-icons/cg'
+
+// const connectButtonStyle: React.CSSProperties = {
+//   backgroundColor: "transparent",
+//   color: "white",
+//   fontSize: '26px',
+//   minWidth: '10px',
+//   maxHeight: '10px',
+//   verticalAlign: 'middle',
+//   paddingTop: '10px'
+// };
+
+// export default function Home() {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+//   const handleAuthSuccess = (token: string) => {
+//     // Save token (e.g., in local storage)
+//     localStorage.setItem('token', token);
+//     setIsAuthenticated(true);
+//   };
+
+//   return (
+//     <div>
+//       <h1>Welcome to My Web3 App</h1>
+//       <ConnectButton
+//             connectButton={{
+//               label: <CgProfile />,
+//               className: 'm-[0.8rem]',
+//               style: connectButtonStyle
+//             }}
+//             client={client}
+//             chain={chain}
+//           />
+//       {!isAuthenticated ? (
+//         <>
+//           <AuthForm type="login" onAuthSuccess={handleAuthSuccess} />
+//           <AuthForm type="signup" onAuthSuccess={handleAuthSuccess} />
+//         </>
+//       ) : (
+//         <p>You are logged in!</p>
+//       )}
+//     </div>
+//   );
+// }

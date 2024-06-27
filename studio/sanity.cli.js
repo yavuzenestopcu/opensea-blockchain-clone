@@ -1,3 +1,4 @@
+'use server'
 import { defineCliConfig } from 'sanity/cli'
 
 export default defineCliConfig({

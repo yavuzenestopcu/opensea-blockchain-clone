@@ -3,7 +3,7 @@ import Link from 'next/link'
 import logo from '../assets/nft-galaxy-logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
-import { ConnectButton, ConnectEmbed } from '@/app/thirdweb'
+import { ConnectButton} from '@/app/thirdweb'
 import { chain, client } from "@/utils/constants"
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 import React from 'react'
@@ -48,12 +48,14 @@ export default function Header() {
         <input className={style.searchInput} placeholder='Search items, collections and accounts'></input>
       </div>
       <div className={style.headerItems}>
-        <Link href="/collections/0xA60b2190a2A290F63726892BD879E490e7230cD4">
+        <Link href="/collections/0x195D5b8EF5C5F9183E006B52Bd1cedDa68185116">
           <div className={style.headerItem}>Collections</div>
         </Link>
         <div className={style.headerItem}>Stats</div>
         <div className={style.headerItem}>Resources</div>
-        <div className={style.headerItem}>Create</div>
+        <Link href="/create">
+          <div className={style.headerItem}>Create</div>
+        </Link>
         <div className={style.headerIcon}>
           <ConnectButton
             connectButton={{
