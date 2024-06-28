@@ -79,13 +79,13 @@ export function Token(props: Props) {
   const listings = (listingsInSelectedCollection || []).filter(
     (item) =>
       item.assetContractAddress.toLowerCase() ===
-        nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
+      nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
   );
 
   const auctions = (allAuctions || []).filter(
     (item) =>
       item.assetContractAddress.toLowerCase() ===
-        nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
+      nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
   );
 
   const allLoaded = !isLoadingNFT && !isLoading && !isRefetchingAllListings;
@@ -168,11 +168,11 @@ export function Token(props: Props) {
                 </Flex>
               </>
             )}
-            {account &&
+            {/* {account &&
               nft &&
               (ownedByYou || (ownedQuantity1155 && ownedQuantity1155 > 0n)) && (
                 <CreateListing tokenId={nft?.id} account={account} />
-              )}
+              )} */}
             <Accordion
               mt="30px"
               sx={{ container: {} }}
@@ -230,7 +230,7 @@ export function Token(props: Props) {
                                 <Td px={1}>
                                   <Text>
                                     {item.creatorAddress.toLowerCase() ===
-                                    account?.address.toLowerCase()
+                                      account?.address.toLowerCase()
                                       ? "You"
                                       : shortenAddress(item.creatorAddress)}
                                   </Text>

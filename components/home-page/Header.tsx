@@ -16,6 +16,7 @@ import {
   Box,
   Button,
   Flex,
+  // Image,
   Menu,
   MenuButton,
   MenuItem,
@@ -31,6 +32,7 @@ import {
   useDisconnect,
 } from "thirdweb/react";
 import type { Wallet } from "thirdweb/wallets";
+import { blo } from 'blo'
 
 const style = {
   wrapper: `bg-[#04111d] px-[1.2rem] py-[0.8rem] flex`,
@@ -54,10 +56,11 @@ const connectButtonStyle = {
   paddingTop: '5px'
 };
 
-export function Header ()  {
+export function Header() {
   const account = useActiveAccount();
   const wallet = useActiveWallet();
   const { colorMode } = useColorMode();
+
 
   return (
     <div className={style.wrapper}>
@@ -77,7 +80,7 @@ export function Header ()  {
         />
       </div>
       <div className={style.headerItems}>
-        <Link href="/collections/0x195D5b8EF5C5F9183E006B52Bd1cedDa68185116">
+        <Link href="/collections">
           <div className={style.headerItem}> Collections </div>
         </Link>
         <div className={style.headerItem}> Stats </div>
@@ -87,11 +90,8 @@ export function Header ()  {
           <ToggleThemeButton />
         </div>
         <div className={style.headerIcon}>
-          <ProfileButton address={account?.address} wallet={wallet} />
+          <ProfileButton address={account!?.address} wallet={wallet!} />
         </div>
-        {/* <div className={style.headerIcon}>
-          <CgProfile />
-        </div> */}
         <div className={style.headerIcon}>
           <ConnectButton
             connectButton={{
@@ -125,17 +125,12 @@ function ProfileButton({
           <Box my="auto">
             <FiUser size={30} />
           </Box>
-          <Image
-            src={ensAvatar} //?? blo(address as `0x${string}`)
-            height="40px"
-            rounded="8px"
-          />
         </Flex>
       </MenuButton>
       <MenuList >
         <MenuItem as={Link} href="/profile" _hover={{ textDecoration: "none" }}>
-          Profile {ensName ? `(${ensName})` : ""}
-        </MenuItem>
+          Profile 
+        </MenuItem> 
         <MenuItem
           onClick={() => {
             if (wallet) disconnect(wallet);
