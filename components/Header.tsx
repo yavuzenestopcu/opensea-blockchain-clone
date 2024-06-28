@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '../assets/nft-galaxy-logo.png'
+import logo from '../assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
-import { ConnectButton, ConnectEmbed } from '@/app/thirdweb'
+import { ConnectButton } from '@/app/thirdweb'
 import { chain, client } from "@/utils/constants"
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 import React from 'react'
@@ -20,44 +20,48 @@ const style = {
   headerIcon: `text-[white] text-3xl font-black px-4 hover:text-white cursor-pointer`
 }
 
-const connectButtonStyle: React.CSSProperties = {
+const connectButtonStyle = {
   backgroundColor: "transparent",
   color: "white",
-  fontSize: '26px',
+  fontSize: '32px',
   minWidth: '10px',
   maxHeight: '10px',
   verticalAlign: 'middle',
-  paddingTop: '10px'
+  paddingTop: '5px'
 };
 
-
-export default function Header() {
-
+const Header = () => {
   return (
     <div className={style.wrapper}>
-      <Link href='/' className='flex'>
+      <Link href="/" className='flex'>
         <div className={style.logoContainer}>
-          <Image src={logo} alt="logo" height={40} width={40} />
-          <div className={style.logoText}>NFT Galaxy</div>
+          <Image src={logo} alt='logo' height={40} width={40} />
+          <div className={style.logoText}>NFTGalaxy</div>
         </div>
       </Link>
       <div className={style.searchBar}>
         <div className={style.searchIcon}>
           <AiOutlineSearch />
         </div>
-        <input className={style.searchInput} placeholder='Search items, collections and accounts'></input>
+        <input
+          className={style.searchInput}
+          placeholder="Search items, collections, and accounts"
+        />
       </div>
       <div className={style.headerItems}>
-        <Link href="/collections/0xA60b2190a2A290F63726892BD879E490e7230cD4">
-          <div className={style.headerItem}>Collections</div>
+        <Link href="/collections/0x195D5b8EF5C5F9183E006B52Bd1cedDa68185116">
+          <div className={style.headerItem}> Collections </div>
         </Link>
-        <div className={style.headerItem}>Stats</div>
-        <div className={style.headerItem}>Resources</div>
-        <div className={style.headerItem}>Create</div>
+        <div className={style.headerItem}> Stats </div>
+        <div className={style.headerItem}> Resources </div>
+        <div className={style.headerItem}> Create </div>
+        <div className={style.headerIcon}>
+          <CgProfile />
+        </div>
         <div className={style.headerIcon}>
           <ConnectButton
             connectButton={{
-              label: <CgProfile />,
+              label: <MdOutlineAccountBalanceWallet />,
               className: 'm-[0.8rem]',
               style: connectButtonStyle
             }}
@@ -65,10 +69,9 @@ export default function Header() {
             chain={chain}
           />
         </div>
-        <div className={style.headerIcon}>
-          <MdOutlineAccountBalanceWallet />
-        </div>
       </div>
     </div>
   )
 }
+
+export default Header

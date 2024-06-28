@@ -1,6 +1,8 @@
+import React from 'react'
+
 const style = {
   wrapper: `relative`,
-  container: `before:content-[''] before:bg-red-500 before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[url('https://i.seadn.io/gcs/files/8e80ff63b1e3e0f06282a42ffdbe411a.png')] before:bg-cover before:bg-center before:opacity-30 before:blur`,
+  container: `before:content-[''] before:bg-red-500 before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[url('https://i.seadn.io/s/raw/files/05aec35959e68de64448c82401374ff6.png')] before:bg-cover before:bg-center before:opacity-30 before:blur`,
   contentWrapper: `flex h-screen relative justify-center flex-wrap items-center`,
   copyContainer: `w-1/2`,
   title: `relative text-white text-[46px] font-semibold`,
@@ -25,7 +27,7 @@ export default function Hero() {
               Discover, collect, and sell extraordinary NFTs
             </div>
             <div className={style.description}>
-              OpenSea is the world&apos;s first and largest NFT marketplace
+              NFT Galaxy is the world&apos;s first and largest NFT marketplace
             </div>
             <div className={style.ctaContainer}>
               <button className={style.accentedButton}>Explore</button>
@@ -35,22 +37,22 @@ export default function Hero() {
           <div className={style.cardContainer}>
             <img
               className="rounded-t-lg"
-              src="https://i.seadn.io/gcs/files/8e80ff63b1e3e0f06282a42ffdbe411a.png"
+              src="https://i.seadn.io/s/raw/files/05aec35959e68de64448c82401374ff6.png"
               alt=""
             />
             <div className={style.infoContainer}>
               <img
-                className="h-[2.25rem] rounded-full"
-                src="https://i.seadn.io/gcs/files/c3210ecdcfe9f4b88d7f310975be748c.png"
+                className="h-[2.25rem] rounded-md"
+                src="https://i.seadn.io/s/raw/files/f1e23f33b637cc4318a9439798180ee5.jpg"
                 alt=""
               />
               <div className={style.author}>
-                <div className={style.name}>Cool Cats</div>
+                <div className={style.name}>Neptumer</div>
                 <a
                   className="text-[#1868b7]"
-                  href="https://opensea.io/assets/ethereum/0x1a92f7381b9f03921564a437210bb9396471050c/875"
+                  href="https://opensea.io/assets/ethereum/0x86486fe85545b57d06330acf1f3d63bb7b790cb4/5348"
                 >
-                  Cool-Cats-Deployer
+                  Starfall Travelers
                 </a>
               </div>
             </div>
