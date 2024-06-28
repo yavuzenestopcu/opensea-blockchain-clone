@@ -168,11 +168,7 @@ export function Token(props: Props) {
                 </Flex>
               </>
             )}
-            {/* {account &&
-              nft &&
-              (ownedByYou || (ownedQuantity1155 && ownedQuantity1155 > 0n)) && (
-                <CreateListing tokenId={nft?.id} account={account} />
-              )} */}
+            {(account && nft && (ownedByYou) && (<CreateListing tokenId={nft?.id} account={account} />))}
             <Accordion
               mt="30px"
               sx={{ container: {} }}
