@@ -7,6 +7,8 @@ import { ConnectButton } from '@/app/thirdweb'
 import { client } from "@/consts/client"
 import { sepolia } from '@/consts/chains'
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
+import { MdShoppingCart } from 'react-icons/md'
+import { CgProfile } from 'react-icons/cg'
 import React from 'react'
 
 import { useGetENSAvatar } from "@/hooks/useGetENSAvatar";
@@ -31,6 +33,7 @@ import {
   useDisconnect,
 } from "thirdweb/react";
 import type { Wallet } from "thirdweb/wallets";
+import { darkTheme } from 'thirdweb/react'
 
 const style = {
   wrapper: `bg-[#04111d] px-[1.2rem] py-[0.8rem] flex`,
@@ -53,6 +56,18 @@ const connectButtonStyle = {
   verticalAlign: 'middle',
   paddingTop: '5px'
 };
+
+const customTheme = darkTheme({
+  colors: {
+    modalBg: "#04111de9",
+    separatorLine: "#262830",
+    secondaryButtonBg: "#22232b",
+    connectedButtonBg: "#04111de9",
+    primaryButtonText: "#131418",
+    secondaryButtonHoverBg: "#262830",
+    connectedButtonBgHover: "#04112de9",
+  },
+})
 
 export function Header ()  {
   const account = useActiveAccount();
@@ -77,21 +92,18 @@ export function Header ()  {
         />
       </div>
       <div className={style.headerItems}>
-        <Link href="/collections/0x195D5b8EF5C5F9183E006B52Bd1cedDa68185116">
+        <Link href="/collections">
           <div className={style.headerItem}> Collections </div>
         </Link>
         <div className={style.headerItem}> Stats </div>
         <div className={style.headerItem}> Resources </div>
         <div className={style.headerItem}> Create </div>
         <div className={style.headerIcon}>
-          <ToggleThemeButton />
-        </div>
-        <div className={style.headerIcon}>
           <ProfileButton address={account?.address} wallet={wallet} />
         </div>
-        {/* <div className={style.headerIcon}>
-          <CgProfile />
-        </div> */}
+        <div className={style.headerIcon}>
+          <MdShoppingCart />
+        </div>
         <div className={style.headerIcon}>
           <ConnectButton
             connectButton={{
@@ -101,7 +113,16 @@ export function Header ()  {
             }}
             client={client}
             chain={sepolia}
+            theme={customTheme}
+            connectModal={{
+              size: "wide",
+              titleIcon: "",
+              showThirdwebBranding: false,
+            }}
           />
+        </div>
+        <div className={style.headerIcon}>
+          <ToggleThemeButton />
         </div>
       </div>
     </div>
@@ -120,26 +141,39 @@ function ProfileButton({
   const { data: ensAvatar } = useGetENSAvatar({ ensName });
   return (
     <Menu>
-      <MenuButton as={Button} height="56px">
-        <Flex>
-          <Box my="auto">
-            <FiUser size={30} />
+      <MenuButton as={Button} width="48px" mr="1px" p={0} _hover={{ textDecoration: "none"}}
+      sx={{
+        backgroundColor: "transparent",
+        color: "currentColor",
+        _hover: {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+        },
+        _active: {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+        },
+      }}>
+        <Flex alignItems="center">
+          <Box className={style.headerIcon}>
+          <CgProfile />
+            {/* <FiUser size={30} /> */}
           </Box>
           <Image
             src={ensAvatar} //?? blo(address as `0x${string}`)
             height="40px"
             rounded="8px"
+            ml={2}
           />
         </Flex>
       </MenuButton>
-      <MenuList >
-        <MenuItem as={Link} href="/profile" _hover={{ textDecoration: "none" }}>
+      <MenuList fontSize="md" sx={{ backgroundColor: "rgba(4, 17, 29, 0.9)", fontWeight: "normal" }}>
+        <MenuItem as={Link} href="/profile" _hover={{ textDecoration: "none", opacity: 0.8}} sx={{ backgroundColor: "transparent"}}>
           Profile {ensName ? `(${ensName})` : ""}
         </MenuItem>
         <MenuItem
+        sx={{ backgroundColor: "transparent"}} _hover={{ opacity: 0.8 }} 
           onClick={() => {
             if (wallet) disconnect(wallet);
-          }}
+          }} 
         >
           Logout
         </MenuItem>
@@ -151,7 +185,20 @@ function ProfileButton({
 function ToggleThemeButton() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Button height="56px" w="56px" onClick={toggleColorMode} mr="10px">
+    <Button
+      onClick={toggleColorMode} height="50px" width="50px" 
+      sx={{
+        backgroundColor: "transparent",
+        color: "currentColor",
+        border: "1px solid currentColor",
+        _hover: {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+        },
+        _active: {
+          backgroundColor: "rgba(0, 0, 0, 0)",
+        },
+      }}
+    >
       {colorMode === "light" ? <FaRegMoon /> : <IoSunny />}
     </Button>
   );
