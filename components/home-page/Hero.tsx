@@ -39,16 +39,20 @@ export default function Hero() {
               NFT Galaxy is the world&apos;s first and largest NFT marketplace
             </div>
             <div className={style.ctaContainer}>
-              <button className={style.accentedButton}>Explore</button>
+              <Link href={'/collections'}>
+                <button className={style.accentedButton}>Explore</button>
+              </Link>
               <button className={style.button}>Create</button>
             </div>
           </div>
           <div className={style.cardContainer}>
-            <img
-              className="rounded-t-lg"
-              src="https://i.seadn.io/s/raw/files/05aec35959e68de64448c82401374ff6.png"
-              alt=""
-            />
+            <Link href={'collection/11155111/0x407B457c04A15a56b7A7230bD2F0C28349b6A1EC/token/0'}>
+              <img
+                className="rounded-t-lg"
+                src="https://i.seadn.io/s/raw/files/05aec35959e68de64448c82401374ff6.png"
+                alt=""
+              />
+            </Link>
             <div className={style.infoContainer}>
               <img
                 className="h-[2.25rem] rounded-md"

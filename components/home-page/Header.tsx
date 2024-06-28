@@ -99,7 +99,7 @@ export function Header ()  {
         <div className={style.headerItem}> Resources </div>
         <div className={style.headerItem}> Create </div>
         <div className={style.headerIcon}>
-          <ProfileButton address={account?.address} wallet={wallet} />
+          <ProfileButton address={account!?.address} wallet={wallet!} />
         </div>
         <div className={style.headerIcon}>
           <MdShoppingCart />
@@ -141,7 +141,7 @@ function ProfileButton({
   const { data: ensAvatar } = useGetENSAvatar({ ensName });
   return (
     <Menu>
-      <MenuButton as={Button} width="48px" mr="1px" p={0} _hover={{ textDecoration: "none"}}
+      <MenuButton as={Button} width="48px" mr="1px" mb={'2px'} p={0} _hover={{ textDecoration: "none"}}
       sx={{
         backgroundColor: "transparent",
         color: "currentColor",
@@ -157,12 +157,6 @@ function ProfileButton({
           <CgProfile />
             {/* <FiUser size={30} /> */}
           </Box>
-          <Image
-            src={ensAvatar} //?? blo(address as `0x${string}`)
-            height="40px"
-            rounded="8px"
-            ml={2}
-          />
         </Flex>
       </MenuButton>
       <MenuList fontSize="md" sx={{ backgroundColor: "rgba(4, 17, 29, 0.9)", fontWeight: "normal" }}>

@@ -6,14 +6,18 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
   Flex,
+  HStack,
   Heading,
+  IconButton,
   Link,
   Table,
   TableContainer,
   Tbody,
   Td,
   Text,
+  Textarea,
   Th,
   Thead,
   Tr,
@@ -33,6 +37,7 @@ import { useMarketplaceContext } from "@/hooks/useMarketplaceContext";
 import dynamic from "next/dynamic";
 import { NftDetails } from "./NftDetails";
 import RelatedListings from "./RelatedListings";
+import { StarIcon, ViewIcon } from "@chakra-ui/icons";
 
 const CancelListingButton = dynamic(() => import("./CancelListingButton"), {
   ssr: false,
@@ -79,13 +84,13 @@ export function Token(props: Props) {
   const listings = (listingsInSelectedCollection || []).filter(
     (item) =>
       item.assetContractAddress.toLowerCase() ===
-        nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
+      nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
   );
 
   const auctions = (allAuctions || []).filter(
     (item) =>
       item.assetContractAddress.toLowerCase() ===
-        nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
+      nftContract.address.toLowerCase() && item.asset.id === BigInt(tokenId)
   );
 
   const allLoaded = !isLoadingNFT && !isLoading && !isRefetchingAllListings;
@@ -135,7 +140,7 @@ export function Token(props: Props) {
           </Flex>
           <Box w={{ lg: "45vw", base: "90vw" }}>
             <Text>Collection</Text>
-            <Flex direction="row" gap="3">
+            <Flex direction="row" gap="3" mb="5px">
               <Heading>{contractMetadata?.name}</Heading>
               <Link
                 color="gray"
@@ -143,6 +148,10 @@ export function Token(props: Props) {
               >
                 <FaExternalLinkAlt size={20} />
               </Link>
+            </Flex>
+            <Flex direction="row" gap="2">
+              <ViewIcon mt="5px"></ViewIcon>
+              <Text>35 views</Text>
             </Flex>
             <br />
             <Text># {nft?.id.toString()}</Text>
@@ -168,11 +177,7 @@ export function Token(props: Props) {
                 </Flex>
               </>
             )}
-            {account &&
-              nft &&
-              (ownedByYou || (ownedQuantity1155 && ownedQuantity1155 > 0n)) && (
-                <CreateListing tokenId={nft?.id} account={account} />
-              )}
+            {(account && nft && (ownedByYou) && (<CreateListing tokenId={nft?.id} account={account} />))}
             <Accordion
               mt="30px"
               sx={{ container: {} }}
@@ -230,7 +235,7 @@ export function Token(props: Props) {
                                 <Td px={1}>
                                   <Text>
                                     {item.creatorAddress.toLowerCase() ===
-                                    account?.address.toLowerCase()
+                                      account?.address.toLowerCase()
                                       ? "You"
                                       : shortenAddress(item.creatorAddress)}
                                   </Text>
@@ -263,8 +268,23 @@ export function Token(props: Props) {
               </AccordionItem>
 
               <RelatedListings excludedListingId={listings[0]?.id ?? -1n} />
+              <Box>
+                <Flex direction="column" gap="3">
+                  <Text>Yorum</Text>
+                  <Textarea></Textarea>
+                  <Flex direction="row" gap="1">
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </Flex>
+                  <Button>Yorum Yap</Button>
+                </Flex>
+              </Box>
             </Accordion>
           </Box>
+
         </Flex>
       </Box>
     </Flex>
