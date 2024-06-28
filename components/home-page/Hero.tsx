@@ -39,7 +39,9 @@ export default function Hero() {
               NFT Galaxy is the world&apos;s first and largest NFT marketplace
             </div>
             <div className={style.ctaContainer}>
-              <button className={style.accentedButton}>Explore</button>
+              <Link href={'/collections'}>
+                <button className={style.accentedButton}>Explore</button>
+              </Link>
               <button className={style.button}>Create</button>
             </div>
           </div>
