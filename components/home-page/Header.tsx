@@ -1,12 +1,36 @@
+'use client'
+
 import Image from 'next/image'
-import Link from 'next/link'
-import logo from '../assets/logo.png'
+import logo from '@/public/logo/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { CgProfile } from 'react-icons/cg'
 import { ConnectButton } from '@/app/thirdweb'
-import { chain, client } from "@/utils/constants"
+import { client } from "@/consts/client"
+import { sepolia } from '@/consts/chains'
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 import React from 'react'
+
+import { useGetENSAvatar } from "@/hooks/useGetENSAvatar";
+import { useGetENSName } from "@/hooks/useGetENSName";
+import { Link } from "@chakra-ui/next-js";
+import {
+  Box,
+  Button,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useColorMode,
+} from "@chakra-ui/react";
+import { FaRegMoon } from "react-icons/fa";
+import { FiUser } from "react-icons/fi";
+import { IoSunny } from "react-icons/io5";
+import {
+  useActiveAccount,
+  useActiveWallet,
+  useDisconnect,
+} from "thirdweb/react";
+import type { Wallet } from "thirdweb/wallets";
 
 const style = {
   wrapper: `bg-[#04111d] px-[1.2rem] py-[0.8rem] flex`,
@@ -30,7 +54,11 @@ const connectButtonStyle = {
   paddingTop: '5px'
 };
 
-const Header = () => {
+export function Header ()  {
+  const account = useActiveAccount();
+  const wallet = useActiveWallet();
+  const { colorMode } = useColorMode();
+
   return (
     <div className={style.wrapper}>
       <Link href="/" className='flex'>
@@ -56,8 +84,14 @@ const Header = () => {
         <div className={style.headerItem}> Resources </div>
         <div className={style.headerItem}> Create </div>
         <div className={style.headerIcon}>
-          <CgProfile />
+          <ToggleThemeButton />
         </div>
+        <div className={style.headerIcon}>
+          <ProfileButton address={account?.address} wallet={wallet} />
+        </div>
+        {/* <div className={style.headerIcon}>
+          <CgProfile />
+        </div> */}
         <div className={style.headerIcon}>
           <ConnectButton
             connectButton={{
@@ -66,7 +100,7 @@ const Header = () => {
               style: connectButtonStyle
             }}
             client={client}
-            chain={chain}
+            chain={sepolia}
           />
         </div>
       </div>
@@ -74,4 +108,51 @@ const Header = () => {
   )
 }
 
-export default Header
+function ProfileButton({
+  address,
+  wallet,
+}: {
+  address: string;
+  wallet: Wallet;
+}) {
+  const { disconnect } = useDisconnect();
+  const { data: ensName } = useGetENSName({ address });
+  const { data: ensAvatar } = useGetENSAvatar({ ensName });
+  return (
+    <Menu>
+      <MenuButton as={Button} height="56px">
+        <Flex>
+          <Box my="auto">
+            <FiUser size={30} />
+          </Box>
+          <Image
+            src={ensAvatar} //?? blo(address as `0x${string}`)
+            height="40px"
+            rounded="8px"
+          />
+        </Flex>
+      </MenuButton>
+      <MenuList >
+        <MenuItem as={Link} href="/profile" _hover={{ textDecoration: "none" }}>
+          Profile {ensName ? `(${ensName})` : ""}
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            if (wallet) disconnect(wallet);
+          }}
+        >
+          Logout
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+}
+
+function ToggleThemeButton() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <Button height="56px" w="56px" onClick={toggleColorMode} mr="10px">
+      {colorMode === "light" ? <FaRegMoon /> : <IoSunny />}
+    </Button>
+  );
+}

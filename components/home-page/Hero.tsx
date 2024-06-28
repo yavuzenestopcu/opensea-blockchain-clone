@@ -1,3 +1,12 @@
+import { NFT_CONTRACTS } from "@/consts/nft_contracts";
+import { Link } from "@chakra-ui/next-js";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import React from 'react'
 
 const style = {
