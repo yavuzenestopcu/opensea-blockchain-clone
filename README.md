@@ -7,4 +7,4 @@ Bu proje, bir NFT (Non-Fungible Token) marketplace sitesi oluşturmayı amaçlam
 
 **Referans Uygulama:** opensea.io
 
-**Uygulama Adresi:** [Vercel](https://nftgalaxy-smoky.vercel.app/) | [Netlify](https://nftgalaxy.netlify.app/)
+**Uygulama Adresi:** [Vercel](https://nft-galaxy-omega.vercel.app/) | [Netlify](https://nftgalaxy.netlify.app/)
